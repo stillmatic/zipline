@@ -42,16 +42,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Install python
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python }}
-
       - name: Install dependencies
         env:
           CONDA_ROOT_PYTHON_VERSION: "2.7"
+          NUMPY_VERSION: matrix.NUMPY_VERSION
+          PANDAS_VERSION: matrix.PANDAS_VERSION
+          SCIPY_VERSION: matrix.SCIPY_VERSION
+          PANDAS_DATAREADER_VERSION: matrix.PANDAS_VERSION
+          DASK_VERSION: matrix.DASK_VERSION
         run: |
-          echo $NUMPY_VERSION  # temp test
           source ./ci/travis/install_miniconda.sh
           source ./ci/travis/overwrite_requirements.sh
           cat etc/requirements.txt
