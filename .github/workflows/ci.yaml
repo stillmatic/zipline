@@ -45,11 +45,11 @@ jobs:
       - name: Install dependencies
         env:
           CONDA_ROOT_PYTHON_VERSION: "2.7"
-          NUMPY_VERSION: matrix.NUMPY_VERSION
-          PANDAS_VERSION: matrix.PANDAS_VERSION
-          SCIPY_VERSION: matrix.SCIPY_VERSION
-          PANDAS_DATAREADER_VERSION: matrix.PANDAS_VERSION
-          DASK_VERSION: matrix.DASK_VERSION
+          NUMPY_VERSION: ${{ matrix.NUMPY_VERSION }}
+          PANDAS_VERSION: ${{ matrix.PANDAS_VERSION }}
+          SCIPY_VERSION: ${{ matrix.SCIPY_VERSION }}
+          PANDAS_DATAREADER_VERSION: ${{ matrix.PANDAS_VERSION }}
+          DASK_VERSION: ${{ matrix.DASK_VERSION }}
         run: |
           source ./ci/travis/install_miniconda.sh
           source ./ci/travis/overwrite_requirements.sh
