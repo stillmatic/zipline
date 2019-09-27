@@ -48,6 +48,8 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
+        env:
+          CONDA_ROOT_PYTHON_VERSION: "2.7"
         run: |
           source ./ci/travis/install_miniconda.sh
           source ./ci/travis/overwrite_requirements.sh
