@@ -49,7 +49,7 @@ jobs:
           PANDAS_VERSION: ${{ matrix.PANDAS_VERSION }}
           SCIPY_VERSION: ${{ matrix.SCIPY_VERSION }}
         run: |
-          if [[ matrix.PANDAS_DATAREADER_VERSION ]]; then export PANDAS_DATAREADER_VERSION=${{ matrix.PANDAS_VERSION }}; fi
+          if [[ matrix.PANDAS_DATAREADER_VERSION ]]; then export PANDAS_DATAREADER_VERSION=${{ matrix.PANDAS_DATAREADER_VERSION }}; fi
           echo $PANDAS_DATAREADER_VERSION
 
           if [[ matrix.DASK_VERSION ]]; then export DASK_VERSION=${{ matrix.DASK_VERSION }}; fi
