@@ -1,0 +1,48 @@
+name: Zipline CI
+
+on:  # temp: change workflow to run on push
+  push:
+    branches:
+      - gh-actions-ci
+
+# TODO: Figure out travis token stuff
+# TODO: figure out if GH actions supports pip cache directory
+
+jobs:
+
+  build-and-test:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      fail-fast: true
+      matrix:
+        python: [2.7, 3.5]
+        pandas: ['old', 'new']
+        exclude:
+          - python: 2.7
+            pandas: 'new'
+        include:
+          - pandas: 'old'
+            NUMPY_VERSION: 1.11.3
+            PANDAS_VERSION: 0.18.1
+            SCIPY_VERSION: 0.17.1
+          - pandas: 'new'
+            NUMPY_VERSION: 1.14.1
+            PANDAS_VERSION: 0.22.0
+            SCIPY_VERSION: 1.0.0
+            PANDAS_DATAREADER_VERSION: 0.4.0
+            DASK_VERSION: 0.17.1
+
+
+    name: py ${{ matrix.python }}/${{ matrix.pandas }} pandas
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: |
+          source ./ci/travis/overwrite_requirements.sh
+          cat etc/requirements.txt
