@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    # On OSX, sed refuses to edit in place, so give it an empty extension for the rename.
-function sed_inplace() {
-    sed -i '' "$@"
-}
-# else
+#     # On OSX, sed refuses to edit in place, so give it an empty extension for the rename.
 #     function sed_inplace() {
-#         sed -i "$@"
+#         sed -i '' "$@"
 #     }
+# else
+function sed_inplace() {
+    sed -i "$@"
+}
 # fi
 
 sed_inplace "s/numpy==.*/numpy==$NUMPY_VERSION/" etc/requirements.txt
