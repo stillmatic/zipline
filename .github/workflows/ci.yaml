@@ -51,6 +51,7 @@ jobs:
         env:
           CONDA_ROOT_PYTHON_VERSION: "2.7"
         run: |
+          echo $NUMPY_VERSION  # temp test
           source ./ci/travis/install_miniconda.sh
           source ./ci/travis/overwrite_requirements.sh
           cat etc/requirements.txt
